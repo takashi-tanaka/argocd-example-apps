@@ -1,0 +1,61 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: 'true'
+  creationTimestamp: '2020-12-11T15:06:43Z'
+  labels:
+    app.kubernetes.io/instance: guestbook
+  managedFields:
+    - apiVersion: route.openshift.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app.kubernetes.io/instance': {}
+        'f:spec':
+          'f:port':
+            .: {}
+            'f:targetPort': {}
+          'f:to':
+            'f:kind': {}
+            'f:name': {}
+            'f:weight': {}
+          'f:wildcardPolicy': {}
+      manager: kubectl-expose
+      operation: Update
+      time: '2020-12-11T15:06:43Z'
+    - apiVersion: route.openshift.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:ingress': {}
+      manager: openshift-router
+      operation: Update
+      time: '2020-12-11T15:06:44Z'
+  name: guestbook-ui
+  namespace: argocd-example-apps
+  resourceVersion: '8807012'
+  selfLink: >-
+    /apis/route.openshift.io/v1/namespaces/argocd-example-apps/routes/guestbook-ui
+  uid: 9776dfc4-b609-41f6-8aa3-6c0a212f8255
+spec:
+  host: guestbook-ui-argocd-example-apps.apps.test.example.local
+  port:
+    targetPort: 80
+  to:
+    kind: Service
+    name: guestbook-ui
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+    - conditions:
+        - lastTransitionTime: '2020-12-11T15:06:44Z'
+          status: 'True'
+          type: Admitted
+      host: guestbook-ui-argocd-example-apps.apps.test.example.local
+      routerCanonicalHostname: apps.test.example.local
+      routerName: default
+      wildcardPolicy: None
